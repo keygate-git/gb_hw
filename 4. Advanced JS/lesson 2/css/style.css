@@ -12,7 +12,7 @@ button:hover {
   margin: 10px;
 }
 
-.products {
+.products, .cart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,7 +21,7 @@ button:hover {
   margin-top: 10px;
 }
 
-.products > div > div {
+.products > div > div, .cart > div > div {
   width: 250px;
   min-height: 300px;
   border: 1px solid black;
@@ -38,11 +38,11 @@ button:hover {
   margin: 10px;
 }
 
-.products > div > div > img {
+.products > div > div > img, .cart > div > div > img {
   max-width: 150px;
 }
 
-.products > div > div > input:not(:nth-child(6)) {
+.products > div > div > input:not(:nth-child(6)), .cart > div > div > input:not(:nth-child(6)) {
   width: 30px;
   margin-bottom: 10px;
 }

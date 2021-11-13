@@ -9,14 +9,14 @@ class GoodItems {
     render() {
         return `<div class="product-item" id="${this.id}-list"><h3>${this.title}</h3><img src="/img/${this.img}.jpg" alt="${this.title}"><p>${this.price}</p><button class="buy-btn">Купить</button></div>`
     }
-    putGood() {
+    putGood() { //метод добавления товара в корзину
         let x = this.id
         goodList.addInCart(x);
-    } //метод добавления товара в корзину
-    addEvent() {
+    }
+    addEvent() { //метод добавления метода добавления в корзину
         let button = document.getElementById(`${this.id}-list`).getElementsByTagName('button')[0];
         button.addEventListener("click", this.putGood);
-    } //метод добавки метода добавления в корзину
+    }
 }
 
 class CartItems extends GoodItems {
@@ -26,18 +26,18 @@ class CartItems extends GoodItems {
         this.sum = price; //свойство для стоимости суммы товаров
         this.checkQuantity = this.checkQuantity.bind(this);
     }
-    render() {
-        return `<div class="product-item" id="${this.id}-cart"><h3>${this.title}</h3><img src="/img/${this.img}.jpg" alt="${this.title}"><p>${this.price}</p><input type="number" value = "1" min="1"><button class="rmv-btn">Удалить</button></div>`
-    } //метод вывода карточки в корзине с дополнительными полями и кнопками
-    checkQuantity() {
+    render() { //метод вывода карточки в корзине с дополнительными полями и кнопками
+        return `<div class="product-item" id="${this.id}-cart"><h3>${this.title}</h3><img src="/img/${this.img}.jpg" alt="${this.title}"><p>${this.price}</p><input type="number" value = "1" min="1"><button class="rmv-btn">Удалить - пока не работает</button></div>`
+    }
+    checkQuantity() { //метод проверки общей стоимости товаров одного SKU
         this.quantity = document.getElementById(`${this.id}-cart`).getElementsByTagName('input')[0].value;
-        this.sum = this.quantity * this.price
-        return console.log(this.sum);
-    } //метод проверки общей стоимости товаров одного SKU
-    addEvent() {
+        this.sum = this.quantity * this.price;
+        goodList.total();
+    }
+    addEvent() { //метод добавления метода проверки общей стоимости при клике на input 
         let counter = document.getElementById(`${this.id}-cart`).getElementsByTagName('input')[0];
         counter.addEventListener("click", this.checkQuantity);
-    } //метод добавки метода проверки общей стоимости при клике на input 
+    }
 }
 
 class GoodLists {
@@ -62,26 +62,27 @@ class GoodLists {
             goodItem.addEvent();
         })
     }
-    addInCart(y) {
+    addInCart(y) { //метод формирования корзины 
         let item = this.goods.find(good => good.id === y);
-        let isCart = this.goodsInCart.indexOf(item)
-        if (isCart = -1) {
-            this.goodsInCart.push(item);
-            console.log(item);
-            // this.goodsInCart.push(this.goods.find(good => good.id === y));
-            // const goodInCart = new CartItems(item.id, item.title, item.price, item.img);
+        let isCart = this.goodsInCart.find(good => good.id === y);
+        if (isCart === undefined) {
+            const goodItem = new CartItems(item.id, item.title, item.price, item.img);
+            this.goodsInCart.push(goodItem);
+            const card = document.createElement('div');
+            card.innerHTML = goodItem.render();
+            document.querySelector('.cart').appendChild(card);
+            goodItem.addEvent();
+            this.total();
         }
     }
-    // renderCart() {
-    //     this.goodsInCart.forEach(item => {
-    //         const goodItem = new CartItems(item.id, item.title, item.price, item.img);
-    //         console.log(goodItem);
-    //         // const card = document.createElement('div');
-    //         // card.innerHTML = goodItem.render();
-    //         // document.querySelector('.products').appendChild(card);
-    //         // goodItem.addEvent();
-    //     })
-    // }
+    total() { //метод формирования общей суммы
+        let totalSum = 0;
+        this.goodsInCart.forEach(item => {
+            totalSum += item.sum;
+        })
+        const amount = document.getElementById('amount');
+        amount.innerHTML = totalSum;
+    }
 }
 
 const goodList = new GoodLists();

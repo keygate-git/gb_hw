@@ -1,0 +1,49 @@
+button {
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background: black;
+  color: white;
+}
+
+.btn-cart {
+  margin: 10px;
+}
+
+.products, .cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.products > div > div, .cart > div > div {
+  width: 250px;
+  min-height: 300px;
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px;
+}
+
+.products > div > div > img, .cart > div > div > img {
+  max-width: 150px;
+}
+
+.products > div > div > input:not(:nth-child(6)), .cart > div > div > input:not(:nth-child(6)) {
+  width: 30px;
+  margin-bottom: 10px;
+}
+/*# sourceMappingURL=style.css.map */

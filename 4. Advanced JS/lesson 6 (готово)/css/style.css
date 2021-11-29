@@ -1,0 +1,81 @@
+.container_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: darkgrey;
+  padding: 0 20px;
+  position: relative;
+}
+
+.container_header > .logo > p {
+  color: white;
+  margin: 10px 0;
+}
+
+.container_header > .other {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container_header > .other > form {
+  margin-right: 30px;
+}
+
+.container_header > .other > form > input {
+  border: 0;
+  border-bottom: 2px solid white;
+  background: none;
+}
+
+.cart {
+  position: absolute;
+  border: 1px solid black;
+  background: white;
+  top: 35px;
+  right: 0;
+}
+
+.cart .cart-item {
+  padding: 5px 10px;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.good-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.good-list > .good-item {
+  margin: 10px 20px;
+  background: gray;
+  padding: 5px 10px;
+}
+
+button {
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */

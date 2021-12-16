@@ -1,6 +1,46 @@
-.Message {
-    margin: auto;
-    width: 250px;
-    height: 100px;
-    border: 1px solid black;
+
+.author {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+
+    & > .messageBody {
+        border-radius: 5px;
+        width: 45%;
+        padding: 5px;
+        background-color: white;
+        & > .text {
+            text-align: left;
+            word-wrap: break-word;
+            margin-bottom: 5px;
+        }
+        & > .from {
+            text-align: right;
+            word-wrap: break-word;
+        }
+    }
+}
+
+.robot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+
+    & > .messageBody {
+        border-radius: 5px;
+        width: 45%;
+        padding: 5px;
+        background-color: white;
+        > .text {
+            text-align: left;
+            word-wrap: break-word;
+            margin-bottom: 5px;
+        }
+        & > .from {
+            text-align: right;
+            word-wrap: break-word;
+        }
+    }
 }

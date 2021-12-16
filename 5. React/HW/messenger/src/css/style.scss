@@ -1,0 +1,55 @@
+$messenger-width: 700px;
+
+@mixin start() {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+* {
+    @include start;
+}
+
+.messenger {
+    margin: 0 auto;
+    max-width: $messenger-width;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+.messageField {
+    height: calc(100vh - 300px);  
+    width: 100%;  
+    background-color: rgb(177, 209, 228);
+    padding: 20px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+.form {
+    width: 100%;
+    
+    & > textarea {
+        width: 100%;
+        height: 100px;
+        padding: 3px 3px;
+        resize: none;
+        border-radius: 5px;
+    }
+    & > .buttonArea {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        & button {
+            width: 120px;
+            height: 35px;
+            cursor: pointer;
+            background-color: rgb(48, 189, 90);
+            border: none;
+            border-radius: 5px;
+        }
+    }
+}

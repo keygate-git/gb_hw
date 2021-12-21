@@ -1,0 +1,34 @@
+.form {
+  width: 100%;
+}
+
+.form > textarea {
+  width: 100%;
+  height: 100px;
+  padding: 3px 3px;
+  resize: none;
+  border-radius: 5px;
+}
+
+.form > .buttonArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.form > .buttonArea button {
+  width: 120px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #30bd5a;
+  border: none;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=Form.css.map */

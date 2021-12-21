@@ -5,9 +5,21 @@
           box-sizing: border-box;
 }
 
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chatList {
+  min-width: 200px;
+  border: 1px solid #b1d1e4;
+  border-radius: 5px;
+  margin: 20px;
+}
+
 .messenger {
-  margin: 0 auto;
-  max-width: 700px;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,7 +30,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 20px 20px;
+  padding: 20px;
 }
 
 .messageField {
@@ -29,39 +41,5 @@
   margin-bottom: 20px;
   border-radius: 5px;
   overflow-y: scroll;
-}
-
-.form {
-  width: 100%;
-}
-
-.form > textarea {
-  width: 100%;
-  height: 100px;
-  padding: 3px 3px;
-  resize: none;
-  border-radius: 5px;
-}
-
-.form > .buttonArea {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
-
-.form > .buttonArea button {
-  width: 120px;
-  height: 35px;
-  cursor: pointer;
-  background-color: #30bd5a;
-  border: none;
-  border-radius: 5px;
 }
 /*# sourceMappingURL=style.css.map */

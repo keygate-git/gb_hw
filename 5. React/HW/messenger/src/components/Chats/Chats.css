@@ -5,7 +5,7 @@
           box-sizing: border-box;
 }
 
-.App {
+.Chats {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -42,4 +42,4 @@
   border-radius: 5px;
   overflow-y: scroll;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=Chats.css.map */

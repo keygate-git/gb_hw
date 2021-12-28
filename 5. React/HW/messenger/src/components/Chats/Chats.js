@@ -1,73 +1,44 @@
 import './Chats.css'
-import { useEffect, useState, useParams } from 'react';
+import { useEffect } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
 import Message from '../Message/Message';
 import Form from '../Form/Form';
-import ChatList from '../ChatList/ChatList';
-import List from '@mui/material/List';
-import Router from '../Router/Router';
+
+function Chats({ messages, onAddMessage }) {
+    const { chatId } = useParams();
 
 
-
-function Chats() {
-    const params = useParams();
-    // console.log(params);
-    const initialChats = {
-        id1: {
-            name: 'Chat1',
-            messageList: [{ text: "FirstMessage", author: "Robot" }]
-        }
-        ,
-        id2: {
-            name: 'Chat2',
-            messageList: [{ text: "FirstMessage", author: "Author" }]
-        }
-    };
-
-    const [chats, setChats] = useState(initialChats);
-
-    const [messageList, setMessageList] = useState(
-        []
-    );
-
-    // const chatList = [{
-    //     title: 'chat 1',
-    //     key: Date.now()
-    // },
-    // {
-    //     title: 'chat 2',
-    //     key: Date.now()
-    // }];
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (event.target.input.value != '') {
-            setMessageList([...messageList, { author: 'Author', text: event.target.input.value, key: Date.now() }]);
+            const newNessage = { author: 'Author', text: event.target.input.value, key: Date.now() };
+            onAddMessage(newNessage, chatId);
             event.target.input.value = '';
         }
     };
 
     useEffect(() => {
-        if (messageList.length != 0 && messageList[messageList.length - 1].author != 'Robot') {
-            setTimeout(() => { setMessageList([...messageList, { author: 'Robot', text: 'Thank you for your message', key: Date.now() }]) }, 2000);
-        };
-    }, [messageList]);
+        if (messages[chatId] && messages[chatId].messageList.length != 0 && messages[chatId].messageList[messages[chatId].messageList.length - 1].author != 'Robot') {
+            setTimeout(() => {
+                const newNessage = { author: 'Robot', text: 'Thank you for your message', key: Date.now() };
+                onAddMessage(newNessage, chatId);
+            }, 2000);
+        }
+    }, [messages]);
 
 
+    if (!messages[chatId]) {
+        return <Navigate to="/chats" replace />;
+    }
 
 
     return (
-        <div className="Chats">
-            <div className="chatList">
-                <List>
-                    <ChatList chatList={chats} />
-                </List>
+        <div className="messenger">
+            <div className="messageField">
+                <Message messages={messages[chatId].messageList} />
             </div>
-            <div className="messenger">
-                <div className="messageField">
-                    <Message messages={messageList} />
-                </div>
-                <Form onSubmit={handleSubmit} />
-            </div>
+            <Form onSubmit={handleSubmit} />
         </div>
     );
 }

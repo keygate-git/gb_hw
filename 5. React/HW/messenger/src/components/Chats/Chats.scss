@@ -21,6 +21,26 @@ $messenger-width: 700px;
     margin: 20px;
 }
 
+.listItem {
+    display: flex;
+}
+
+.deleteButton {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.addButton {
+    padding: 5px;
+    margin-bottom: 20px;
+    background: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .messenger {
     // margin: 0 auto;
     width: 100%;

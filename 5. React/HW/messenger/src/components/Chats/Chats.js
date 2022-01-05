@@ -7,8 +7,6 @@ import Form from '../Form/Form';
 function Chats({ messages, onAddMessage }) {
     const { chatId } = useParams();
 
-
-
     const handleSubmit = (event) => {
         event.preventDefault();
         if (event.target.input.value != '') {
@@ -38,7 +36,7 @@ function Chats({ messages, onAddMessage }) {
             <div className="messageField">
                 <Message messages={messages[chatId].messageList} />
             </div>
-            <Form onSubmit={handleSubmit} />
+            <Form onSubmit={handleSubmit} className='form' />
         </div>
     );
 }

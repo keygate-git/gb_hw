@@ -7,7 +7,7 @@ function Form(props) {
     useEffect(() => {
         inputRef.current?.focus();
     })
-    return <form className="form" onSubmit={props.onSubmit}>
+    return <form className={props.className} onSubmit={props.onSubmit}>
         <textarea ref={inputRef} id='input' type='text'></textarea>
         <div className="buttonArea">
             <Button type='submit'>Send</Button>

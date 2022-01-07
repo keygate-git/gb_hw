@@ -3,7 +3,7 @@ import { showName, changeName } from '../store/profile/actions';
 import Form from '../Form/Form';
 
 const Profile = () => {
-    const storeData = useSelector((state) => state);
+    const storeData = useSelector((state) => state.profile);
     const dispatch = useDispatch();
 
     const handleChange = () => {

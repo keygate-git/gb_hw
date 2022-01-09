@@ -25,3 +25,17 @@ export const addMessage = (chatId, text) => ({
         text: text
     }
 })
+
+let timeout;
+
+export const addMessageWithReply = (chatId, text) => (dispatch) => {
+    dispatch(addMessage(chatId, text));
+
+    if (timeout) {
+        clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(() => {
+        dispatch(addMessage(chatId, { author: 'Robot', text: 'Thank you for your message', key: Date.now() }))
+    }, 2000);
+}

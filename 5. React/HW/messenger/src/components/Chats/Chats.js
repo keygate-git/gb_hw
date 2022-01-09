@@ -4,7 +4,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import Message from '../Message/Message';
 import Form from '../Form/Form';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage } from '../store/chatlist/actions'
+import { addMessage, addMessageWithReply } from '../store/chatlist/actions'
 
 function Chats() {
     const { chatId } = useParams();
@@ -17,19 +17,19 @@ function Chats() {
         event.preventDefault();
         if (event.target.input.value != '') {
             const newNessage = { author: 'Author', text: event.target.input.value, key: Date.now() };
-            dispatch(addMessage(chatId, newNessage));
+            dispatch(addMessageWithReply(chatId, newNessage));
             event.target.input.value = '';
         }
     };
 
-    useEffect(() => {
-        if (storeData[chatId] && storeData[chatId].messageList.length != 0 && storeData[chatId].messageList[storeData[chatId].messageList.length - 1].author != 'Robot') {
-            setTimeout(() => {
-                const newNessage = { author: 'Robot', text: 'Thank you for your message', key: Date.now() };
-                dispatch(addMessage(chatId, newNessage));
-            }, 2000);
-        }
-    }, [storeData]);
+    // useEffect(() => {
+    //     if (storeData[chatId] && storeData[chatId].messageList.length != 0 && storeData[chatId].messageList[storeData[chatId].messageList.length - 1].author != 'Robot') {
+    //         setTimeout(() => {
+    //             const newNessage = { author: 'Robot', text: 'Thank you for your message', key: Date.now() };
+    //             dispatch(addMessage(chatId, newNessage));
+    //         }, 2000);
+    //     }
+    // }, [storeData]);
 
 
     if (!storeData[chatId]) {

@@ -6,6 +6,9 @@ import Chats from '../Chats/Chats';
 import ChatList from '../ChatList/ChatList';
 import Profile from '../Profile/Profile';
 import Doesnotexist from '../Doesnotexist/Doesnotexist'
+import Articles from '../Articles/Articles';
+import { PublicOutlet } from '../PublicOutlet/PublicOutlet';
+import { PrivateOutlet } from '../PrivateOutlet/PrivateOutlet';
 
 const Router = () => {
 
@@ -13,10 +16,19 @@ const Router = () => {
         <BrowserRouter>
             <Menu />
             <Routes>
-                <Route path='/' element={<Main />} ></Route>
-                <Route path='/profile/' element={<Profile />} />
-                <Route path='/chats/' element={<ChatList />} >
-                    <Route path=':chatId' element={<Chats />} />
+                <Route element={<PublicOutlet />}>
+                    <Route path='/' element={<Main />} ></Route>
+                </Route>
+                <Route element={<PrivateOutlet />}>
+                    <Route path='/profile/' element={<Profile />} />
+                </Route>
+                <Route element={<PrivateOutlet />}>
+                    <Route path='/chats/' element={<ChatList />} >
+                        <Route path=':chatId' element={<Chats />} />
+                    </Route>
+                </Route>
+                <Route element={<PrivateOutlet />}>
+                    <Route path='/articles' element={<Articles />} />
                 </Route>
                 <Route path='*' element={<Doesnotexist />} />
             </Routes>

@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.Chats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chatList {
+  min-width: 200px;
+  border: 1px solid #b1d1e4;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.listItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.deleteButton {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.addButton {
+  padding: 5px;
+  margin-bottom: 20px;
+  background: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.messenger {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+}
+
+.messageField {
+  height: calc(100vh - 300px);
+  width: 100%;
+  background-color: #b1d1e4;
+  padding: 20px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+/*# sourceMappingURL=Chats.css.map */

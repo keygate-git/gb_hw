@@ -1,4 +1,4 @@
-import { ADD_CHAT, DELETE_CHAT, ADD_MESSAGE } from "./actions";
+import { INIT_CHATS, ADD_CHAT, DELETE_CHAT, ADD_MESSAGE } from "./actions";
 
 export const initialChats = {
     id1: {
@@ -14,6 +14,10 @@ export const initialChats = {
 
 export const chatlistReducer = (state = initialChats, action) => {
     switch (action.type) {
+        case INIT_CHATS:
+            return {
+                ...action.payload
+            }
         case ADD_CHAT:
             return {
                 ...state, [action.payload.newName]: {

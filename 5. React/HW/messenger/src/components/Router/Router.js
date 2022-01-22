@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import Main from '../Main/Main'
@@ -9,15 +9,22 @@ import Doesnotexist from '../Doesnotexist/Doesnotexist'
 import Articles from '../Articles/Articles';
 import { PublicOutlet } from '../PublicOutlet/PublicOutlet';
 import { PrivateOutlet } from '../PrivateOutlet/PrivateOutlet';
+import { useDispatch, useSelector } from 'react-redux';
+import { initAuthTracking } from '../store/profile/actions';
 
 const Router = () => {
-
+    const storeData = useSelector((state) => state.profile);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(initAuthTracking());
+    }, []);
     return (
         <BrowserRouter>
             <Menu />
             <Routes>
                 <Route element={<PublicOutlet />}>
                     <Route path='/' element={<Main />} ></Route>
+                    <Route path='signup' element={<Main isSignUp />} ></Route>
                 </Route>
                 <Route element={<PrivateOutlet />}>
                     <Route path='/profile/' element={<Profile />} />

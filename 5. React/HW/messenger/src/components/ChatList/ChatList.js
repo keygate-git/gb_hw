@@ -1,4 +1,4 @@
-
+import { useEffect } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -7,17 +7,22 @@ import ListItemText from '@mui/material/ListItemText';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import List from '@mui/material/List';
 import { useDispatch, useSelector } from 'react-redux';
-import { addChat, deleteChat } from '../store/chatlist/actions'
+import { initChats, setAddChat, setDeleteChat } from '../store/chatlist/actions'
 
 
 function ChatList() {
 
     const storeData = useSelector((state) => state.chatlist);
+    const profileData = useSelector((state) => state.profile);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(initChats(profileData.userId));
+    }, []);
 
     const handleAddChat = () => {
         let newName;
-        if (Object.keys(storeData).length == 0) {
+        if (Object.keys(storeData).length == 0 || !storeData) {
             newName = 'id1'
         } else {
             newName = 'id' + (+(Object.keys(storeData)[Object.keys(storeData).length - 1].slice(2)) + 1);
@@ -26,12 +31,11 @@ function ChatList() {
         for (; userName.length == 0;) {
             userName = prompt('Enter name');
         };
-        dispatch(addChat(newName, userName));
+        dispatch(setAddChat(profileData.userId, newName, userName));
     };
 
     const handleRemoveChat = (e) => {
-        delete storeData[e.target.id];
-        dispatch(deleteChat(storeData));
+        dispatch(setDeleteChat(profileData.userId, e.target.id));
     }
 
     return <div className="Chats">
@@ -43,6 +47,7 @@ function ChatList() {
         </div >
         <Outlet />
     </div >
+
 }
 
 export default ChatList;

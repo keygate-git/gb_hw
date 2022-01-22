@@ -1,23 +1,24 @@
 import './Chats.css'
-import { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Message from '../Message/Message';
 import Form from '../Form/Form';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage, addMessageWithReply } from '../store/chatlist/actions'
+import { setAddMessageWithReply } from '../store/chatlist/actions'
 
 function Chats() {
     const { chatId } = useParams();
 
     const storeData = useSelector((state) => state.chatlist);
+    const profileData = useSelector((state) => state.profile);
     const dispatch = useDispatch();
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (event.target.input.value != '') {
-            const newNessage = { author: 'Author', text: event.target.input.value, key: Date.now() };
-            dispatch(addMessageWithReply(chatId, newNessage));
+            const newMessageNo = storeData[chatId].messageList ? storeData[chatId].messageList.length : 0;
+            const newMessage = { author: 'Author', text: event.target.input.value, key: Date.now() };
+            dispatch(setAddMessageWithReply(profileData.userId, chatId, newMessage, newMessageNo));
             event.target.input.value = '';
         }
     };
@@ -36,10 +37,12 @@ function Chats() {
         return <Navigate to="/chats" replace />;
     }
 
+
+
     return (
         <div className="messenger">
             <div className="messageField">
-                <Message messages={storeData[chatId].messageList} />
+                <Message messages={storeData[chatId].messageList ? storeData[chatId].messageList : []} />
             </div>
             <Form onSubmit={handleSubmit} className='form' />
         </div>
